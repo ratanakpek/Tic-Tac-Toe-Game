@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     var playOne = ArrayList<Int>()
     var playTwo = ArrayList<Int>()
     var playOneOrTwo = 1
+    //allow only 9 step to move
     var step=0
     val score: Int = 10
 
@@ -143,24 +144,21 @@ class MainActivity : AppCompatActivity() {
                 scorePlayOne = scorePlayOne + score
                 tvPlayOne.text = "" + scorePlayOne
                 tvPlayTwo.text = "" + scorePlayTwo
-                //Toast.makeText(this, "Ratanak is winner!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Ratanak is winner!", Toast.LENGTH_SHORT).show()
 
             } else {
                 scorePlayTwo = scorePlayTwo + score
                 tvPlayTwo.text = "" + scorePlayTwo
                 tvPlayOne.text = "" + scorePlayOne
-                //Toast.makeText(this, "Vorn Katort is winner!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Vorn Katort is winner!", Toast.LENGTH_SHORT).show()
             }
-
-            //check for draw match
-            if (step == 9) {
-
-            }
-
+            winner=-1
             lnReplay.visibility = View.VISIBLE
         }else if(winner==-1){
+            //check for draw match
             if(step==9) {
                 Toast.makeText(this, "Draw Match!", Toast.LENGTH_SHORT).show()
+                lnReplay.visibility = View.VISIBLE
             }
         }
 
@@ -176,7 +174,8 @@ class MainActivity : AppCompatActivity() {
         winner = -1
         playTwo.clear()
         playOne.clear()
-
+        step=0
+        playOneOrTwo=1
         resetBackground()
         resetText()
         enableButton()
@@ -187,7 +186,6 @@ class MainActivity : AppCompatActivity() {
     /*reset background to gray default*/
     fun resetBackground() {
         btnOne.setBackgroundColor(resources.getColor(R.color.myGray))
-
         btnTwo.setBackgroundColor(resources.getColor(R.color.myGray))
         btnThree.setBackgroundColor(resources.getColor(R.color.myGray))
         btnFour.setBackgroundColor(resources.getColor(R.color.myGray))
@@ -211,6 +209,7 @@ class MainActivity : AppCompatActivity() {
         btnNine.text = ""
     }
 
+    /*Allow button to click again*/
     fun enableButton() {
         btnOne.isEnabled = true
         btnTwo.isEnabled = true
